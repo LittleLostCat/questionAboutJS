@@ -7,7 +7,7 @@ var c = b.split('-').splice(1,0,"1").join("-");
 
 var c = b.split('-');
 c.splice(1,0,"1");
-var d = join("-");
+var d = c.join("-");
 //统计
 //影响原数组
 //
@@ -134,3 +134,4 @@ class Logger {
 const logger = new Logger();
 const { printName } = logger;
 printName(); 
+
