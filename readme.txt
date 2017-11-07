@@ -1,0 +1,1 @@
+There are some questions about javascript in my normal projects.
