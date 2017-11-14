@@ -136,3 +136,7 @@ const { printName } = logger;
 printName(); 
 
 
+import {bar,foo, fn0, fn1} from "./a";
+console.log(bar+"_"+foo);
+fn0();
+fn1();
