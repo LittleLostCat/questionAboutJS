@@ -1,0 +1,5 @@
+在安装vue-cli后，运行vue命令行，出现了错误，随后运行之前没有问题的webpack时也出现了同样的状况：Error: Cannot find module 'C:\Users\it\node_modules\webpack\bin\webpack.js'
+而我的nodejs安装在D盘，且全局安装路径正确无问题。
+那么我在环境变量中更改了路径NODE_PATH改为全局的安装路径D:\nodejs\node_global\node_modules，PATH 中也该为D:\nodejs\
+我是从原来的C盘将nodejs重新安装到了D盘，在一次全局安装报错，清理了部分包导致在C盘目录下运行npm之类也会提示Cannot find module
+原来在C盘下的文件进行局部安装的在使用命令行时也会提示错误，如：'webpack' 不是内部或外部命令，也不是可运行的程序或批处理文件。
