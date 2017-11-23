@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<input type="text" id="data" value='11.900'>
+	<input type="button" value="click" onclick = "getType()">
+</body>
+<script>
+	function getType(){
+		var input = document.getElementById("data").value+"";
+ 		var bo = new RegExp("((\\.0+)|(0+))$");//正则对象建立字符串形式需要进行对\的转译
+ 		var co = new RegExp(/((\.0+)|(0+))$/);
+ 		//var co = new RegExp(/(\.0+)/);
+ 		co.test(input)
+ 		console.log(RegExp.$1)
+ 		var dot = input.replace(co,"")
+		document.getElementById("data").value = dot;
+	}
+	function fitter(data){
+	var data = "" + data;
+		data = data.replace(/(?=(?!\b)(\d{3})+$)/g, ',')
+			return data;
+	};
+	var a=100234010;
+	var b=fitter(a);console.log(b);
+</script>
+</html>
