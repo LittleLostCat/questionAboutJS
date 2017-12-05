@@ -4,8 +4,118 @@
 	<meta charset="UTF-8">
 	<title>Document</title>
 </head>
+<style>
+	.overflower { 
+		display: inline-block; 
+		overflow: hidden;
+		box-sizing: border-box; 
+		max-width: 100%; 
+		height: 1.5em; 
+		line-height: 1.5em; 
+		white-space: nowrap; 
+		text-overflow: ellipsis; 
+	} 
+	.overflower-long { display: inline; } 
+	.overflower-short { display: none; } 
+	@supports (flex-wrap: wrap) { 
+		.overflower { 
+			display: inline-flex; 
+			flex-wrap: wrap; 
+		} 
+		.overflower-short { 
+			display: block; 
+			overflow: hidden; 
+			flex-grow: 1; 
+			width: 0; 
+			text-overflow: ellipsis; 
+		} 
+		.overflower-long { flex-basis: 100%; } 
+	} 
+	.flex1{
+		display: flex;
+		flex-wrap:wrap;
+		width:30px;
+		height: 20px;
+		line-height: 20px;
+		overflow: hidden;
+	}
+	.item2{
+		white-space: nowrap;
+	}
+</style>
 <body>
-	<div id="main"></div>
+	<div id="main">
+		<span class="flex1">
+			<span class="item2 overflower-short">cat</span>
+			<span class="item2 overflower-long">little lost cat</span>
+		</span>
+	</div>
+	<div class="example">
+	    <input type="checkbox" id="WidthTogglerMenu">
+	    <label for="WidthTogglerMenu">
+	      Toggle the width of the block below
+	    </label>
+	    <div class="wrapper" style="width: 750px;">
+	      <ul class="menu">
+	        <li class="menu-item">
+	            <a href="#">
+	            <span class="overflower">
+	              <span class="overflower-short" aria-hidden="true" title="🐈 Walking cats 🐈">
+	                <span class="overflower">
+	                  <span class="overflower-short">
+	                    🐈🐈🐈
+	                  </span>
+	                  <span class="overflower-long">
+	                    Walking cats
+	                  </span>
+	                </span>
+	              </span>
+	              <span class="overflower-long">
+	                🐈 Walking cats 🐈
+	              </span>
+	            </span>
+	          </a>
+	        </li>
+	        <li class="menu-item">
+	          <a href="#">
+	            <span class="overflower">
+	              <span class="overflower-short" aria-hidden="true" title="🙀 Surprised cats 🙀">
+	                <span class="overflower">
+	                  <span class="overflower-short">
+	                    🙀🙀🙀
+	                  </span>
+	                  <span class="overflower-long">
+	                    Surprised cats
+	                  </span>
+	                </span>
+	              </span>
+	              <span class="overflower-long">
+	                🙀 Surprised cats 🙀
+	              </span>
+	            </span>
+	          </a>
+	        </li>
+	        <li class="menu-item">
+	          <a href="#">
+	            <span class="overflower">
+	              <span class="overflower-short" aria-hidden="true" title="🦁 Sad lions 🦁">
+	                <span class="overflower">
+	                  <span class="overflower-short">
+	                    🦁🦁🦁
+	                  </span>
+	                  <span class="overflower-long">
+	                    Sad lions
+	                  </span>
+	                </span>
+	              </span>
+	              <span class="overflower-long">
+	                🦁 Sad lions 🦁
+	              </span>
+	            </span>
+	          </a>
+	        </li>
+	      </ul>
+	    </div>
+  </div>
 </body>
-<script src="normal.js"></script>
 </html>
