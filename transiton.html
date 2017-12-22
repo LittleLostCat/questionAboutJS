@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<style>
+	.content{
+		width: 900px;
+		height: 300px;
+	}
+	.red{
+		background: red;
+	}
+	.cell{
+		float: left;
+		margin: 5px;
+		border: 1px solid black;
+		width: 100px;
+		height: 100px;
+		transition:all 0.5s ease;
+	}
+</style>
+<body>
+	<label for="all">全部</label>
+	<input type="checkbox" id='all' class="btn">
+	<label for="red">红色</label>
+	<input type="checkbox" id='red' class="btn">
+	<div class="content">
+		<div class="cell"></div>
+		<div class="cell red"></div>
+		<div class="cell red"></div>
+		<div class="cell"></div>
+		<div class="cell red"></div>
+		<div class="cell"></div>
+		<div class="cell"></div>
+		<div class="cell red"></div>
+		<div class="cell"></div>
+		<div class="cell red"></div>
+		<div class="cell"></div>
+		<div class="cell red"></div>
+		<div class="cell"></div>
+		<div class="cell"></div>
+		<div class="cell red"></div>
+		<div class="cell red"></div>
+	</div>
+</body>
+<script src='./lib/jquery@2.2.4.min.js'></script>
+<script>
+	var ipt = document.querySelectorAll("input[type='checkbox']");
+	for(let i=0,len=ipt.length;i<len;i++){
+		ipt[i].onchange = function(){
+			let _this = this;
+			transiton(_this);
+		}
+	}
+	function transiton(ele){
+		let type = ele.getAttribute("id");
+		if(type == "red"){
+			let reds = document.getElementsByClassName("red");
+			for(let i = 0,len=reds.length;i<len;i++){
+				reds[i].style.display = "none";
+			}
+		}
+	}
+</script>
+</html>
