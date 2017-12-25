@@ -12,13 +12,23 @@
 	.red{
 		background: red;
 	}
+	.yellow{
+		background: yellow;
+	}
+	.green{
+		background: green;
+	}
 	.cell{
 		float: left;
 		margin: 5px;
 		border: 1px solid black;
 		width: 100px;
 		height: 100px;
+		opacity: 1;
 		transition:all 0.5s ease;
+	}
+	.opacity{
+		opacity: 0;
 	}
 </style>
 <body>
@@ -26,23 +36,27 @@
 	<input type="checkbox" id='all' class="btn">
 	<label for="red">红色</label>
 	<input type="checkbox" id='red' class="btn">
+	<label for="yellow">黄色</label>
+	<input type="checkbox" id='yellow' class="btn">
+	<label for="green">绿色</label>
+	<input type="checkbox" id='green' class="btn">
 	<div class="content">
-		<div class="cell"></div>
-		<div class="cell red"></div>
-		<div class="cell red"></div>
-		<div class="cell"></div>
-		<div class="cell red"></div>
-		<div class="cell"></div>
-		<div class="cell"></div>
-		<div class="cell red"></div>
-		<div class="cell"></div>
-		<div class="cell red"></div>
-		<div class="cell"></div>
-		<div class="cell red"></div>
-		<div class="cell"></div>
-		<div class="cell"></div>
-		<div class="cell red"></div>
-		<div class="cell red"></div>
+		<div class="cell">1</div>
+		<div class="cell green">2</div>
+		<div class="cell red">3</div>
+		<div class="cell">4</div>
+		<div class="cell red">5</div>
+		<div class="cell yellow">6</div>
+		<div class="cell green">7</div>
+		<div class="cell red">8</div>
+		<div class="cell">9</div>
+		<div class="cell yellow">10</div>
+		<div class="cell green">11</div>
+		<div class="cell red">12</div>
+		<div class="cell">13</div>
+		<div class="cell yellow">14</div>
+		<div class="cell green">15</div>
+		<div class="cell red">16</div>
 	</div>
 </body>
 <script src='./lib/jquery@2.2.4.min.js'></script>
@@ -53,13 +67,42 @@
 			let _this = this;
 			transiton(_this);
 		}
-	}
+	};
+	var positions = [].map.call(document.querySelectorAll(".content>.cell"),(ele,index)=>{
+		return [ele.offsetLeft,ele.offsetTop];
+	})
 	function transiton(ele){
 		let type = ele.getAttribute("id");
-		if(type == "red"){
-			let reds = document.getElementsByClassName("red");
-			for(let i = 0,len=reds.length;i<len;i++){
-				reds[i].style.display = "none";
+		let allChecks = document.querySelectorAll("input[type = 'checkbox']:checked:not(.all)");
+		let checkedId = [].map.call(allChecks,(ele,index)=>{
+			return ele.getAttribute("id");
+		})
+		let classNames = checkedId.join(',.'),
+			notClassNames = checkedId.join('):not(.');
+		if(type != "all"){
+			document.getElementById('all').checked = false;
+			let checks = document.querySelectorAll(".content>."+classNames),
+			    others = document.querySelectorAll(".content>:not(."+notClassNames+")");
+			    //console.log(others);
+			for(let i = 0,len=others.length;i<len;i++){
+				others[i].classList.add("opacity");
+			}
+			for(let i = 0,len = checks.length;i<len;i++){
+				let letf = positions[i][0]-checks[i].offsetLeft,
+					top = positions[i][1]-checks[i].offsetTop;
+				//reds[i].style.transform = 'translate('+letf+'px,'+top+'px)';
+				checks[i].style.transform = 'matrix(1,0,0,1,'+letf+','+top+')';
+				checks[i].classList.remove("opacity");
+			}
+		}else{
+			let allChecks = document.querySelectorAll("input[type = 'checkbox']:checked:not(#all)");
+			for(let i = 0,len = allChecks.length;i<len;i++){
+				allChecks[i].checked = false;
+			}
+			let others = document.querySelectorAll(".content>.cell");
+			for(let i = 0,len=others.length;i<len;i++){
+				others[i].classList.remove("opacity");
+				others[i].style.transform = 'matrix(1,0,0,1,0,0)';
 			}
 		}
 	}
