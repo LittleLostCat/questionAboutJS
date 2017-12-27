@@ -7,7 +7,7 @@
 <style>
 	.content{
 		width: 900px;
-		height: 300px;
+		overflow: hidden;
 	}
 	.red{
 		background: red;
@@ -17,6 +17,9 @@
 	}
 	.green{
 		background: green;
+	}
+	.blue{
+		background: blue;
 	}
 	.cell{
 		float: left;
@@ -30,8 +33,21 @@
 	.opacity{
 		opacity: 0;
 	}
+	.container{
+		display: flex;
+		flex-wrap:wrap;
+		width: 400px;
+		height: 200px;
+		border: 1px solid black;
+	}
+	.cons{
+		flex:1 1 150px;
+		border: 1px solid red;
+		transition:all 1s ease;
+	}
 </style>
 <body>
+	<input type="button" value='change' onclick = 'changes()'>
 	<label for="all">全部</label>
 	<input type="checkbox" id='all' class="btn">
 	<label for="red">红色</label>
@@ -40,13 +56,15 @@
 	<input type="checkbox" id='yellow' class="btn">
 	<label for="green">绿色</label>
 	<input type="checkbox" id='green' class="btn">
+	<label for="blue">蓝色</label>
+	<input type="checkbox" id='blue' class="btn">
 	<div class="content">
 		<div class="cell">1</div>
 		<div class="cell green">2</div>
 		<div class="cell red">3</div>
 		<div class="cell">4</div>
 		<div class="cell red">5</div>
-		<div class="cell yellow">6</div>
+		<div class="cell blue">6</div>
 		<div class="cell green">7</div>
 		<div class="cell red">8</div>
 		<div class="cell">9</div>
@@ -55,8 +73,22 @@
 		<div class="cell red">12</div>
 		<div class="cell">13</div>
 		<div class="cell yellow">14</div>
-		<div class="cell green">15</div>
+		<div class="cell blue">15</div>
 		<div class="cell red">16</div>
+		<div class="cell blue">17</div>
+		<div class="cell yellow">18</div>
+		<div class="cell green">19</div>
+		<div class="cell">20</div>
+		<div class="cell blue">21</div>
+		<div class="cell yellow">22</div>
+		<div class="cell green">23</div>
+		<div class="cell blue">24</div>
+	</div>
+	<div></div>
+	<div class="container">
+		<div class="cons">1111</div>
+		<div class="cons">2222</div>
+		<div class="cons">3333</div>
 	</div>
 </body>
 <script src='./lib/jquery@2.2.4.min.js'></script>
@@ -83,7 +115,6 @@
 			document.getElementById('all').checked = false;
 			let checks = document.querySelectorAll(".content>."+classNames),
 			    others = document.querySelectorAll(".content>:not(."+notClassNames+")");
-			    //console.log(others);
 			for(let i = 0,len=others.length;i<len;i++){
 				others[i].classList.add("opacity");
 			}
@@ -105,6 +136,14 @@
 				others[i].style.transform = 'matrix(1,0,0,1,0,0)';
 			}
 		}
+	}
+	function changes(){
+		var cons = document.getElementsByClassName("cons");
+		[].forEach.call(cons,(v,i)=>{
+			let order = Math.trunc(Math.random()*6);
+			v.style.order = order;
+			console.log(order)
+		})
 	}
 </script>
 </html>
