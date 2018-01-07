@@ -20,11 +20,19 @@
 		document.getElementById("data").value = dot;
 	}
 	function fitter(data){
-	var data = "" + data;
-		data = data.replace(/(?=(?!\b)(\d{3})+$)/g, ',')
+		var data = "" + data;
+			data = data.replace(/(?=(?!\b)(\d{3})+$)/g, ',')
 			return data;
 	};
 	var a=100234010;
 	var b=fitter(a);console.log(b);
+	function judge(data){
+		var data = "" + data,
+			rex = new RegExp(/^[1-9]+.?[1-9]$/);
+		var result = data.match(rex);
+		var result1 = rex.test(data);
+		return result1;
+	}
+	console.log(judge("a11.23aa"))
 </script>
 </html>
