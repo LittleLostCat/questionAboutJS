@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<textarea name="" id="inStr" cols="40" rows="40"></textarea>
+	<div style="display:inline-block;width:180px;">
+		<input type="text" placeholder = '输入单个字段' id="likeParam"><br/><br/>
+		<input type="button" value="in转换" onclick="inOutput()"><br/><br/>
+		<input type="button" value="like转换" onclick="likeOutput()"><br/><br/>
+	</div>
+	<textarea name="" id="outStr" cols="40" rows="40"></textarea>
+</body>
+<script>
+	var inStr = document.getElementById("inStr");
+	var outStr = document.getElementById("outStr");
+	var likeParam = document.getElementById("likeParam");
+	likeParam.onclick = function(){
+		this.select();
+	}
+	function inOutput()
+	{
+		let likeP = likeParam.value.replace(/\s/g,"");
+		var str = "";
+		if(likeP){
+			str = "where " + likeP + " in ('"+inStr.value.replace(/\n/g,"','").replace(/\s/g,"")+"')";
+		}else{
+			str ="('"+inStr.value.replace(/\n/g,"','").replace(/\s/g,"")+"')";
+		}
+		outStr.value = str;
+	}
+	function likeOutput()
+	{
+		let likeP = likeParam.value.replace(/\s/g,"");
+		if(likeP){
+			var str = "where " + inStr.value.replace(/^\b/mg,likeP + " like '%").replace(/\b$/mg,"%' or ").replace(/or\s$/,"");
+			outStr.value = str;
+		}else{
+			alert("请输入正确的like字段")
+		}
+	}
+</script>
+</html>
