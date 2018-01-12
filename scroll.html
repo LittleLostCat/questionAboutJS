@@ -4,10 +4,30 @@
 	<meta charset="UTF-8">
 	<title>Document</title>
 </head>
+<style>
+	.content{
+		width:20px;
+		height: 200px;
+		border: 1px solid black;
+		overflow: hidden;
+		word-wrap:break-word;
+		margin-left:300px ;
+	}
+	.rotate{
+		/*transition:all 3s ease infinite;*/
+		animation:move 3s linear infinite;
+	}
+	@keyframes move{
+		0%{transform:rotate(0deg);}
+		50%{transform:rotate(180deg);}
+		100%{transform:rotate(360deg);}
+	}
+</style>
 <body>
 	<button id="scroll">滚动一下</button>
+	<div class='content rotate'>111111</div>
 </body>
 <script>
-	let 
+
 </script>
 </html>

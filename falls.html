@@ -4,7 +4,35 @@
 	<meta charset="UTF-8">
 	<title>Document</title>
 </head>
+<style>
+	.main{
+		width: 1000px;
+		display: flex;
+		flex-flow:row wrap;
+		justify-content:space-between;
+		align-content:flex-start;
+	}	
+	.cell{
+		margin: 10px;
+		border: 1px solid black;
+		width: 160px;
+		flex: 1 1 auto;
+		overflow: hidden;
+	}
+
+</style>
 <body>
-	
+	<div class="main"></div>
 </body>
+<script>
+	var fragment = "";
+	var divnums = ~~(Math.random()*100)+10;//至少十个
+	var main = document.getElementsByClassName("main")[0];
+	for(let i = 0;i<divnums;i++){
+		let height = ~~(Math.random()*200)+100;
+		fragment +=`<div class='cell' style='height:${height}px'></div>`
+	}
+	console.log(main,fragment)
+	main.innerHTML = fragment;
+</script>
 </html>
