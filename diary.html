@@ -14,9 +14,9 @@
 	//将{"a":["1","2"],"b":["一","二"]}转为[{"a":"1","b":"一"}，{"a":"2","b":"二"}]
 	var a = {"a":["1","2",4,5,6,7],"b":["一","二","三"]};
 	function changes(param){
-		let objs = Object.keys(param);
-		let result = [];
-		let length = [].reduce.call(objs,(pre,next)=> Math.max(pre,param[next].length),0)
+		let objs = Object.keys(param),
+		    result = [],
+			length = [].reduce.call(objs,(pre,next)=> Math.max(pre,param[next].length),0);
 		for(let i = 0;i<length;i++){
 			result[i] = {};
 			for(let key of objs){
