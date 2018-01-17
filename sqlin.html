@@ -7,7 +7,9 @@
 <body>
 	<textarea name="" id="inStr" cols="40" rows="40"></textarea>
 	<div style="display:inline-block;width:180px;">
+		<textarea name="" id="freeStr" cols="22" rows="20"></textarea>
 		<input type="text" placeholder = '输入单个字段' id="likeParam"><br/><br/>
+		<input type="button" value="replace" onclick="freeOutput()"><br/><br/>
 		<input type="button" value="in转换" onclick="inOutput()"><br/><br/>
 		<input type="button" value="like转换" onclick="likeOutput()"><br/><br/>
 	</div>
@@ -17,6 +19,7 @@
 	var inStr = document.getElementById("inStr");
 	var outStr = document.getElementById("outStr");
 	var likeParam = document.getElementById("likeParam");
+	var freeStr = document.getElementById("freeStr");
 	likeParam.onclick = function(){
 		this.select();
 	}
@@ -40,6 +43,13 @@
 		}else{
 			alert("请输入正确的like字段")
 		}
+	}
+	function freeOutput()
+	{
+		let regExp = new RegExp(freeStr.value,"g");
+		let likeP = likeParam.value;
+		var str =  likeP.replace("toreplace",inStr.value.replace(regExp,"','").replace(/\s/g,""));
+		outStr.value = str;
 	}
 </script>
 </html>
