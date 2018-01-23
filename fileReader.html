@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<input type="file" />
+	<button onclick='read()'>确定</button>
+</body>
+<script>
+	var readers1 = new FileReader();
+	var readers2 = new FileReader();
+	var readers3 = new FileReader();
+	var ipt = document.getElementsByTagName('input');
+	function read(){
+		var file = ipt[0].files[0];
+		readers1.readAsDataURL(file);  
+		readers2.readAsText(file);  
+		readers3.readAsBinaryString(file);
+	}
+</script>
+</html>
