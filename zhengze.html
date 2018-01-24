@@ -29,7 +29,7 @@
 	var b=fitter(a);console.log(b);
 	function judge(data){
 		var data = "" + data,
-			rex = new RegExp(/^[1-9]+.?[1-9]$/);
+			rex = new RegExp(/^[1-9]+.?[1-9]+$/);
 		var result = data.match(rex);
 		var result1 = rex.test(data);
 		return result1;
