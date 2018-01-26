@@ -16,7 +16,7 @@
 	function changes(param){
 		let objs = Object.keys(param),
 		    result = [],
-			length = [].reduce.call(objs,(pre,next)=> Math.max(pre,param[next].length),0);
+			length = [].reduce.call(objs,(pre,next,index)=> Math.max(pre,param[next].length),0);
 		for(let i = 0;i<length;i++){
 			result[i] = {};
 			for(let key of objs){
