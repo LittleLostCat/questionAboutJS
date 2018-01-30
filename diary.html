@@ -25,5 +25,46 @@
 		}
 		return result;
 	}
+    //合并对象数组的函数,适用于单层对象
+    //obj需要合并的对象数组
+    //group需要区分的组别名
+    //arg为需要以字符串形式合并的对象key，其余的则不变
+    function assign(obj, group, ...arg) 
+    {
+        let result = [],
+            groups = [];
+        if (Object.prototype.toString.call(obj) !== "[object Array]") 
+        {
+            return "输入对象数组有误";
+        }
+        for (let i = 0; i < obj.length; i++) {
+            let v = obj[i];
+            if (v[group] !== undefined)
+            {
+                if (!groups.includes(v[group]))
+                {
+                    groups.push(v[group]);
+                    v["note"] += ";";
+                    v["reason_note"] += ";";
+                    result[groups.indexOf(v[group])] = Object.assign({}, v);
+                }
+                else
+                {
+                    let single = result[groups.indexOf(v[group])];
+                    for (let j = 0; j < arg.length; j++) {
+                        if (v[arg[j]] == "") {
+                             continue;
+                        };
+                        single[arg[j]] += v[arg[j]] + ";";
+                    }
+                }
+            }
+            else
+            {
+                continue;
+            }
+        }
+        return result;
+    }
 </script>
 </html>
