@@ -34,6 +34,11 @@
 		var result1 = rex.test(data);
 		return result1;
 	}
-	console.log(judge("a11.23aa"))
+	function secondDot(data){
+		var data = "" + data;
+			data = data.replace(/(?<=\.\d*)\./g, '')
+		return data;
+	}
+	console.log(secondDot('11.22.33.44.55'))
 </script>
 </html>
