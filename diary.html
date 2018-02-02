@@ -37,9 +37,9 @@
         {
             return "输入对象数组有误";
         }
-        if (Object.prototype.toString.call(group) !== "[object Array]") 
+        if (Object.prototype.toString.call(group) === "[object Object]") 
         {
-            return "输入对象数组有误";
+            return "输入组别有误，请输入数组或单个字段";
         }
         for (let i = 0; i < obj.length; i++) {
             let v = obj[i];
