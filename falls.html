@@ -19,8 +19,14 @@
 		flex: 1 1 auto;
 		overflow: hidden;
 	}
+	span{
+		font-family: Px Narrow Regular;
+		font-size: 20px;
+		font-weight: 600;
+	}
 </style>
 <body>
+	<span>EAC</span>
 	<div class="main"></div>
 </body>
 <script>
@@ -31,7 +37,6 @@
 		let height = ~~(Math.random()*200)+100;
 		fragment +=`<div class='cell' style='height:${height}px'></div>`
 	}
-	console.log(main,fragment)
 	main.innerHTML = fragment;
 </script>
 </html>

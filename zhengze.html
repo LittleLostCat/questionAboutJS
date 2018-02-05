@@ -6,7 +6,7 @@
 </head>
 <body>
 	<input type="text" id="data" value='11.900'>
-	<input type="button" value="click" onclick = "getType()">
+	<input type="button" value="click" onclick = "secondDot()">
 	<a href="https://www.baidu.com" target='_blank'>百度一下</a>
 </body>
 <script>
@@ -34,11 +34,11 @@
 		var result1 = rex.test(data);
 		return result1;
 	}
-	function secondDot(data){
-		var data = "" + data;
+	function secondDot(){
+		var data = document.getElementById("data").value+"";
 			data = data.replace(/^\D|[^\d.]|(?<=\.\d*)\./g, '')
+			console.log(data)
 		return data;
 	}
-	console.log(secondDot('11.22.33.44.55'))
 </script>
 </html>
