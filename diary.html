@@ -4,6 +4,15 @@
 	<meta charset="UTF-8">
 	<title>Document</title>
 </head>
+<style>
+    .target{
+        background: red;
+        border: 1px solid black;
+        width: 300px;
+        height: 300px;
+        transform:scale(0.9);
+    }
+</style>
 <body>
 	webpack不是内部命令是由于环境变量问题引起；
 	0105项目代码问题，由于测试未删除测试代码，导致发布后部分功能不能实现；
@@ -11,6 +20,8 @@
     <hr/>
     <input type="text" id="ipt">
     <input type="button" onclick = 'tochange(3,true)' value = '点我'>
+    <div class='target'></div>
+    <input type="button" onclick = 'transformChange()' value = '点我1'>
  </div>
 </body>
 <script>
@@ -113,6 +124,12 @@
         let ipt = document.getElementById("ipt"),
             val = ipt.value;
         ipt.value = val.toMyFixed(digit,flag);
+    }
+    //原生js调用transform
+    var target = document.getElementsByClassName("target")[0];
+    function transformChange(){
+        console.log(document.defaultView.getComputedStyle(target));
+        //target.style.transform = ''
     }
 </script>
 </html>
