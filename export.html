@@ -51,12 +51,12 @@
     </tr>  
 </table>
 	<a id="dlink"  style="display:none;"></a>
-<input type="text" name="" value="请输入文件名" class="center-block form-control" style="margin-bottom: 20px; text-align: center" id="submit" onclick="submt()">	
+<input type="text" name="" value="请输入文件名" class="center-block form-control" style="margin-bottom: 20px; text-align: center" id="submit" onclick="submit()">	
 <input type="button" class="btn btn-primary center-block" onclick="tableToExcel('tablename', 'name', 'zhangsan.xls')" value="Export to Excel">
 </body>
 <script>
 	var nnn = "";
-	function submt(){
+	function submit(){
 		document.getElementById('submit').value="";
 	}
 	
