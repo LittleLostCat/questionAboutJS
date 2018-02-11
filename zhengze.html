@@ -40,5 +40,14 @@
 			console.log(data)
 		return data;
 	}
+	function strLimit(str){
+		if(/(^\S{1,11})/.test(str)){
+			if(RegExp.$1.length>10){
+				return RegExp.$1.substr(0,10)+"。。。";
+			}else{
+				return RegExp.$1;
+			}
+		}
+	}
 </script>
 </html>
