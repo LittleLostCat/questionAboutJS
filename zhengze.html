@@ -26,7 +26,7 @@
 			return data;
 	};
 	var a=100234010;
-	var b=fitter(a);console.log(b);
+	var b=fitter(a);
 	function judge(data){
 		var data = "" + data,
 			rex = new RegExp(/^[1-9]+.?[1-9]+$/);
@@ -36,8 +36,7 @@
 	}
 	function secondDot(){
 		var data = document.getElementById("data").value+"";
-			data = data.replace(/^\D|[^\d.]|(?<=\.\d*)\./g, '')
-			console.log(data)
+			data = data.replace(/^\D|[^\d.]|(?<=\.\d*)\./g, '');
 		return data;
 	}
 	function strLimit(str){
