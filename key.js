@@ -31,16 +31,37 @@ function fireKeyEvent(el, evtType, keyCode){
 }  
 fireKeyEvent(input元素, 'keydown', 13); 
 
+
+//async
 async function timeout(ms) {
   await new Promise((resolve) => {
     setTimeout(resolve, ms);
   });
 }
-
 async function asyncPrint(value, ms) {
   await timeout(ms);
   console.log(value);
 }
-
 asyncPrint('hello world', 5000);
 
+// method - 支持 GET, POST, PUT, DELETE, HEAD
+// url - 请求的 URL
+// headers - 对应的 Headers 对象
+// referrer - 请求的 referrer 信息
+// mode - 可以设置 cors, no-cors, same-origin
+// credentials - 设置 cookies 是否随请求一起发送。可以设置: omit, same-origin,include
+// redirect - follow, error, manual
+// integrity - subresource 完整性值(integrity value)
+// cache - 设置 cache 模式 (default, reload, no-cache)
+var request = new Request('/users.json', {
+    method: 'POST', 
+    mode: 'cors', 
+    redirect: 'follow',
+    headers: new Headers({
+        'Content-Type': 'text/plain'
+    }),  
+    body: JSON.stringify({
+        firstParam: 'yourValue',
+        secondParam: 'secondValue',
+    })
+});
