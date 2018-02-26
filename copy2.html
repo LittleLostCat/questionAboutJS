@@ -1,0 +1,71 @@
+ <!DOCTYPE html> 
+<html> 
+<head> 
+<script type="text/javascript" src="./lib/jquery@2.2.4.min.js"></script> 
+</head> 
+<body> 
+<div id="content" style="background: grey"> 
+乔布斯掌权时代的iPhone以精湛的做工受到广泛的关注，也受到了大量的果粉追捧。iPhone4S的黄金尺寸设计，再到iPhone5s的巅峰状态，但是iPhone6的横空出世似乎打破了苹果公司在工艺方面的追求。虽然iPhone6及其iPhone6 Plus的销量比前几代产品都要高 （原因受安卓大屏冲击的影响，果粉对大屏手机的欲望愈加的浓烈），但是收到广泛吐槽也是最多的。大白条，尤其是突出的摄像头，乔布斯知道估计都能从坟里跳出来！ 不喜欢的iPhone6的果粉可以等等了，iPhone7马上就要来临了，这是国外设计师设计出的一部iPhone7的概念图，这部iPhone7不仅做工精湛， 而且消除了打白条和涉嫌头突出问题，更重要的是采用了iPhone4的双面玻璃设计，边角做出了圆润设计，不仅时尚，而且商务气息十足， 适合追求时尚的年轻人和商务人士使用，受用人群更广泛了。 
+</div> 
+<input type="button" onclick='choose()'>
+</body> 
+<script type="text/javascript"> 
+var ss,ee;
+$(function(){ 
+$("#content").mouseup(function(e){ 
+if(window.getSelection) { 
+var textObj = document.getElementById("content"); 
+var selectedText = window.getSelection().toString(); 
+//alert(selectedText); 
+selectedText = "<span style='background:red'>"+selectedText+"</span>"; 
+
+var start = window.getSelection().anchorOffset; 
+ss = start;
+var end = window.getSelection().focusOffset; 
+ee = end;
+
+var tempStr1 = textObj.innerHTML.substring(0,start); 
+var tempStr2 = textObj.innerHTML.substring(end); 
+
+//document.getElementById("content").innerHTML = tempStr1 + selectedText + tempStr2 ; 
+
+} 
+
+
+}); 
+
+}); 
+function choose(){
+	var text = document.getElementById("content"); 
+	if (document.body.createTextRange) {
+
+        var range = document.body.createTextRange();
+
+        range.moveToElementText(text);
+
+        range.select();
+
+    } else if (window.getSelection) {
+
+        var selection = window.getSelection();
+
+        var range = document.createRange();
+
+        range.selectNodeContents(text);
+
+        selection.removeAllRanges();
+
+        selection.addRange(range);
+
+      
+
+    }
+	//var rng = window.getSelection();  console.log(rng);
+　  //rng.moveStart("character",10); 
+　  //rng.moveEnd("character",-1); 
+　  //rng.select(); 
+}
+
+</script> 
+</html>
+
