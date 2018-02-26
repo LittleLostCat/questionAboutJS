@@ -65,3 +65,13 @@ var request = new Request('/users.json', {
         secondParam: 'secondValue',
     })
 });
+fetch(request).then(function() { /* handle response */ });
+
+
+// type - 类型,支持: basic, cors
+// url
+// useFinalURL - Boolean 值, 代表 url 是否是最终 URL
+// status - 状态码 (例如: 200, 404, 等等)
+// ok - Boolean值,代表成功响应(status 值在 200-299 之间)
+// statusText - 状态值(例如: OK)
+// headers - 与响应相关联的 Headers 对象.
