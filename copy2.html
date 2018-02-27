@@ -16,7 +16,6 @@ $("#content").mouseup(function(e){
 if(window.getSelection) { 
 var textObj = document.getElementById("content"); 
 var selectedText = window.getSelection().toString(); 
-//alert(selectedText); 
 selectedText = "<span style='background:red'>"+selectedText+"</span>"; 
 
 var start = window.getSelection().anchorOffset; 
