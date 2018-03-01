@@ -61,3 +61,9 @@ Date.prototype.format = function (fmt) {
     }
     return fmt;
 }
+function isArray(o){
+    return Object.prototype.toString.call(o)=='[object Array]';
+}
+
+
+

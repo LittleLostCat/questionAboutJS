@@ -99,5 +99,26 @@
         console.log(document.defaultView.getComputedStyle(target));
         //target.style.transform = ''
     }
+    function mianshi(){
+        let b = ['animal','dog','husky'],i = 0;
+        let a = new Object();
+        //==时触发
+        a.toString = function(){
+            let result = b[i];
+            i = i === 3 ? 0 : ++i;
+            return result;
+        }
+        Object.defineProperty(a,"name",{
+            get:function(){
+                let result = b[i];
+                i = i === 3 ? 0 : ++i;
+                return result;
+            }
+        })
+        if(a["name"]==='animal'&&a["name"]==='dog'&&a["name"]==='husky'){
+            console.log('hello world')
+        }
+    }
+    mianshi()
 </script>
 </html>
