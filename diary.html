@@ -27,6 +27,7 @@
     <input type="button" onclick = 'transformChange()' value = '点我1'>
  </div>
 </body>
+<script src='./caculate.js'></script>
 <script>
 	//将{"a":["1","2"],"b":["一","二"]}转为[{"a":"1","b":"一"}，{"a":"2","b":"二"}]
 	var a = {"a":["1","2",4,5,6,7],"b":["一","二","三"]};
@@ -99,26 +100,5 @@
         console.log(document.defaultView.getComputedStyle(target));
         //target.style.transform = ''
     }
-    function mianshi(){
-        let b = ['animal','dog','husky'],i = 0;
-        let a = new Object();
-        //==时触发
-        a.toString = function(){
-            let result = b[i];
-            i = i === 3 ? 0 : ++i;
-            return result;
-        }
-        Object.defineProperty(a,"name",{
-            get:function(){
-                let result = b[i];
-                i = i === 3 ? 0 : ++i;
-                return result;
-            }
-        })
-        if(a["name"]==='animal'&&a["name"]==='dog'&&a["name"]==='husky'){
-            console.log('hello world')
-        }
-    }
-    mianshi()
 </script>
 </html>
