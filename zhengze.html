@@ -6,7 +6,7 @@
 </head>
 <body>
 	<input type="text" id="data" value='11.900'>
-	<input type="button" value="click" onclick = "secondDot()">
+	<input type="button" value="click" onclick = "match()">
 	<a href="https://www.baidu.com" target='_blank'>百度一下</a>
 </body>
 <script>
@@ -47,6 +47,16 @@
 				return RegExp.$1;
 			}
 		}
+	}
+	function match(){
+        var bar_PG = "P",
+            bar_Z = "SH01Z",
+            bar_C = "SH01C",
+            bar_H = "SH01H",
+            str = "(" + bar_PG + "|" + bar_Z + "|" + bar_C + "|" + bar_H + ")";
+        var reg = new RegExp("\^" + str, "i"),
+        	strs = document.getElementById("data").value+"";
+        console.log(reg,strs.match(reg),reg.test(strs))
 	}
 </script>
 </html>
