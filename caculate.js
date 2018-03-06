@@ -52,7 +52,7 @@ function order(words){
       return a.match(/\d/) - b.match(/\d/);
    }).join(' ');
 } 
-console.log(order("is2 Thi1s T4est 3a"))
+//console.log(order("is2 Thi1s T4est 3a"))
 
 
 function likes (names) {
@@ -105,3 +105,48 @@ function revrot(str, sz) {
     }
     return result.join("");
 }
+
+
+function mix(s1, s2) {
+  let ss1 = [...new Set(s1.replace(/[^a-z]/g,""))],
+      ss2 = [...new Set(s2.replace(/[^a-z]/g,""))],
+      common = [...new Set([...ss1,...ss2])],
+      result = [];
+  console.log(ss1,ss2)
+  common.forEach((v,i)=>{
+    let reg = new RegExp(v,"g"),
+        lens1 = s1.match(reg)==null?0:s1.match(reg).length,
+        lens2 = s2.match(reg)==null?0:s2.match(reg).length,
+        len = Math.max(lens1,lens2),
+        num = lens1 > lens2 ? "1" : lens1 < lens2 ? "2" : "=";
+    len>1?result.push(num+":"+v.repeat(len)):"";
+  });
+  result.sort((a,b)=>{
+    let len = b.length-a.length;
+    if(len == 0){
+      let order = (a[0]+"").charCodeAt() - (b[0]+"").charCodeAt();
+      if(order == 0){
+        return (a[2]+"").charCodeAt() - (b[2]+"").charCodeAt();
+      }
+      return order
+    }
+    return len
+  })
+  return result.join("/")
+}
+//别人的
+function mix(s1, s2) {
+  var counter = s => s.replace(/[^a-z]/g,'').split('').sort().reduce((x,y)=> (x[y] = 1 + (x[y]||0), x),{});
+  s1 = counter(s1); s2 = counter(s2);
+  var res = [], keys = new Set(Object.keys(s1).concat(Object.keys(s2)));
+  keys.forEach(key => {
+    var c1 = s1[key]||0, c2 = s2[key]||0, count = Math.max(c1, c2);
+    if (count>1) {
+      var from = [1, '=', 2][Math.sign(c2-c1)+1];
+      var str = [...Array(count)].map(_=>key).join('');
+      res.push(from+':'+str);
+    }
+  });
+  return res.sort((x, y) => y.length - x.length || (x < y ? -1 : 1)).join('/');
+}
+console.log(mix("Lords of the Fallen", "gamekult"))
