@@ -185,3 +185,25 @@ function removeNb (n) {
   }
   return results;
 }
+
+//罗马数字转为阿拉伯数字
+function solution(roman){
+  let nums = {
+    "I":1,
+    "V":5,
+    "X":10,
+    "L":50,
+    "C":100,
+    "D":500,
+    "M":1000
+  },
+  len = roman.length;
+  return [].reduce.call(roman,(now,next,i)=>{
+    var now = i<len-1&&nums[roman[i]]<nums[roman[i+1]]
+              ?now-nums[next]
+              :now+nums[next];
+    console.log(nums[roman[i]],nums[roman[i+1]],now)
+    return now;
+  },0) 
+}
+console.log(solution('MMVIII'))
