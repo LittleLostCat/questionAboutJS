@@ -231,15 +231,58 @@ function LCS(str1, str2){
         dp[i] = [0] //第一列全是0
         for(var j = 1; j <= n; j++){//一共有n+1列
             if(str1[i-1] === str2[j-1]){ 
-                //注意这里，str1的第一个字符是在第二列中，因此要减1，str2同理
-                dp[i][j] = dp[i-1][j-1] + 1 //对角＋1
+              //注意这里，str1的第一个字符是在第二列中，因此要减1，str2同理
+              dp[i][j] = dp[i-1][j-1] + 1; //对角＋1
             } else {
-                 dp[i][j] = Math.max( dp[i-1][j], dp[i][j-1]) 
+              dp[i][j] = Math.max( dp[i-1][j], dp[i][j-1]);
             }
         }
     } 
     return dp[m][n];
 }
 
-
-
+//
+function desimo(n){
+  let x = Math.ceil(Math.sqrt(n)), 
+      y = Math.floor(Math.sqrt(n)),
+      //1的坐标
+      startX = Math.ceil(x/2)-1,
+      startY = Math.ceil(y/2)-1,
+      arr = [] ;
+      console.log(x,y)
+  for(let i = 0;i<x;i++){
+      arr[i] = new Array(x).fill(0);
+  }
+  for(let i= 1;i<=n;i++){
+    //判断i的值介于那两个数的平方间
+    let mm = Math.floor(Math.sqrt(i)),
+        nn = Math.ceil(Math.sqrt(i));
+        mm = mm === nn ? mm -1 : mm;
+    let z = Math.ceil((mm*mm+nn*nn)/2);
+    if(mm%2==1&i<=z){//右侧
+      let zm = startX + nn/2,
+          zn = zm;
+      arr[zm - (z-i)][zm] = i;
+    }else if(mm%2==1&i>=z){//下侧
+      let zm = startX + nn/2,
+          zn = zm;
+      arr[zm][zm - (i-z)] = i;
+    }else if(mm%2==0&i<=z){//左侧
+      let zm = startX - mm/2,
+          zn = zm;
+      arr[zm + (z-i)][zm] = i;
+    }else if(mm%2==0&i>=z){//上侧
+      let zm = startX - mm/2,
+          zn = zm;
+      arr[zm][zm + (i-z)] = i;
+    }
+  }
+  for(let i = 0;i<y;i++){
+    let str = "";
+    for(let j = 0;j<y;j++){
+      str += arr[i][j]+" ".repeat((n+"").length-(arr[i][j]+"").length + 2);
+    }
+    console.log(str);
+  }
+}
+desimo(48)
