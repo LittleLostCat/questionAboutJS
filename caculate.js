@@ -336,7 +336,6 @@ function sudoku(puzzle) {
       }
     }
   }
-  console.log(puzzle)
 }
 function sudokuNum(puzzle,i,j,lastnum){
   let mykey = 0;
