@@ -283,6 +283,7 @@ function desimo(n){
       str += arr[i][j]+" ".repeat((n+"").length-(arr[i][j]+"").length + 2);
     }
     console.log(str);
+    console.log(str);
   }
 }
 /* 
