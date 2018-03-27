@@ -241,7 +241,7 @@ function LCS(str1, str2){
     return dp[m][n];
 }
 
-//数字螺旋
+//数字螺旋（网易面试）
 function desimo(n){
   let x = Math.ceil(Math.sqrt(n)), 
       y = Math.floor(Math.sqrt(n)),
