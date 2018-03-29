@@ -285,6 +285,16 @@ function desimo(n){
     console.log(str);
   }
 }
+var justify = function(str, len) {
+  var lens = Math.floor(str.length/len);
+  var result = "";
+  if(lens==0){return str}
+  for(let i = 0;i<lens;i++){
+    result+=str.substr(i*len,len)+"\n";
+  }
+  result+=str.substr(lens*len);
+  return result;
+};
 /* 
 var puzzle = [
             [5,3,0,0,7,0,0,0,0],
@@ -372,14 +382,3 @@ function sudokuNum(puzzle,i,j,lastnum){
   }
   return mykey;
 }
-
-var justify = function(str, len) {
-  var lens = Math.floor(str.length/len);
-  var result = "";
-  if(lens==0){return str}
-  for(let i = 0;i<lens;i++){
-    result+=str.substr(i*len,len)+"\n";
-  }
-  result+=str.substr(lens*len);
-  return result;
-};
