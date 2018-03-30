@@ -39,6 +39,10 @@
 			data = data.replace(/^\D|[^\d.]|(?<=\.\d*)\./g, '');
 		return data;
 	}
+	function number(){
+		var reg = new RegExp(/^\d*(\.\d+){0,1}$/);
+		return reg;
+	}
 	function strLimit(str){
 		if(/(^\S{1,11})/.test(str)){
 			if(RegExp.$1.length>10){
