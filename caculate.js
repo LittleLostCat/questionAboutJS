@@ -285,100 +285,119 @@ function desimo(n){
     console.log(str);
   }
 }
-var justify = function(str, len) {
-  var lens = Math.floor(str.length/len);
-  var result = "";
-  if(lens==0){return str}
-  for(let i = 0;i<lens;i++){
-    result+=str.substr(i*len,len)+"\n";
-  }
-  result+=str.substr(lens*len);
-  return result;
-};
-/* 
-var puzzle = [
-            [5,3,0,0,7,0,0,0,0],
-            [6,0,0,1,9,5,0,0,0],
-            [0,9,8,0,0,0,0,6,0],
-            [8,0,0,0,6,0,0,0,3],
-            [4,0,0,8,0,3,0,0,1],
-            [7,0,0,0,2,0,0,0,6],
-            [0,6,0,0,0,0,2,8,0],
-            [0,0,0,4,1,9,0,0,5],
-            [0,0,0,0,8,0,0,7,9]];
-sudoku(puzzle);
-Should return
-[[5,3,4,6,7,8,9,1,2],
-[6,7,2,1,9,5,3,4,8],
-[1,9,8,3,4,2,5,6,7],
-[8,5,9,7,6,1,4,2,3],
-[4,2,6,8,5,3,7,9,1],
-[7,1,3,9,2,4,8,5,6],
-[9,6,1,5,3,7,2,8,4],
-[2,8,7,4,1,9,6,3,5],
-[3,4,5,2,8,6,1,7,9]]*/
-var puzzle = [
-            [5,3,0,0,7,0,0,0,0],
-            [6,0,0,1,9,5,0,0,0],
-            [0,9,8,0,0,0,0,6,0],
-            [8,0,0,0,6,0,0,0,3],
-            [4,0,0,8,0,3,0,0,1],
-            [7,0,0,0,2,0,0,0,6],
-            [0,6,0,0,0,0,2,8,0],
-            [0,0,0,4,1,9,0,0,5],
-            [0,0,0,0,8,0,0,7,9]];
-sudoku(puzzle);
-function sudoku(puzzle) {
-  let stack = [],lastnum = 0;//作为问题的关键，储存填入数值的位置，即初始时0的位置
-  for(let i = 0;i<9;i++){
-    for(let j = 0;j<9;j++){
-      if(puzzle[i][j]==0){
-        let mykey = sudokuNum(puzzle,i,j,lastnum);
-        if(mykey>0 && lastnum!=mykey){
-          stack.push([i,j]);
-          puzzle[i][j] = mykey;
-        }else{
-          let rt = stack.pop();
-          i = rt[0],j=--rt[1];
-          lastnum = puzzle[i][j+1];
-          puzzle[i][j+1]=0;
-        }
-      }
-    }
-  }
+// var justify = function(str, len) {
+//   var lens = Math.floor(str.length/len);
+//   var result = "";
+//   if(lens==0){return str}
+//   for(let i = 0;i<lens;i++){
+//     result+=str.substr(i*len,len)+"\n";
+//   }
+//   result+=str.substr(lens*len);
+//   return result;
+// };
+// /* 
+// var puzzle = [
+//             [5,3,0,0,7,0,0,0,0],
+//             [6,0,0,1,9,5,0,0,0],
+//             [0,9,8,0,0,0,0,6,0],
+//             [8,0,0,0,6,0,0,0,3],
+//             [4,0,0,8,0,3,0,0,1],
+//             [7,0,0,0,2,0,0,0,6],
+//             [0,6,0,0,0,0,2,8,0],
+//             [0,0,0,4,1,9,0,0,5],
+//             [0,0,0,0,8,0,0,7,9]];
+// sudoku(puzzle);
+// Should return
+// [[5,3,4,6,7,8,9,1,2],
+// [6,7,2,1,9,5,3,4,8],
+// [1,9,8,3,4,2,5,6,7],
+// [8,5,9,7,6,1,4,2,3],
+// [4,2,6,8,5,3,7,9,1],
+// [7,1,3,9,2,4,8,5,6],
+// [9,6,1,5,3,7,2,8,4],
+// [2,8,7,4,1,9,6,3,5],
+// [3,4,5,2,8,6,1,7,9]]*/
+// var puzzle = [
+//             [5,3,0,0,7,0,0,0,0],
+//             [6,0,0,1,9,5,0,0,0],
+//             [0,9,8,0,0,0,0,6,0],
+//             [8,0,0,0,6,0,0,0,3],
+//             [4,0,0,8,0,3,0,0,1],
+//             [7,0,0,0,2,0,0,0,6],
+//             [0,6,0,0,0,0,2,8,0],
+//             [0,0,0,4,1,9,0,0,5],
+//             [0,0,0,0,8,0,0,7,9]];
+// sudoku(puzzle);
+// function sudoku(puzzle) {
+//   let stack = [],lastnum = 0;//作为问题的关键，储存填入数值的位置，即初始时0的位置
+//   for(let i = 0;i<9;i++){
+//     for(let j = 0;j<9;j++){
+//       if(puzzle[i][j]==0){
+//         let mykey = sudokuNum(puzzle,i,j,lastnum);
+//         if(mykey>0 && lastnum!=mykey){
+//           stack.push([i,j]);
+//           puzzle[i][j] = mykey;
+//         }else{
+//           let rt = stack.pop();
+//           i = rt[0],j=--rt[1];
+//           lastnum = puzzle[i][j+1];
+//           puzzle[i][j+1]=0;
+//         }
+//       }
+//     }
+//   }
+// }
+// function sudokuNum(puzzle,i,j,lastnum){
+//   let mykey = 0;
+//   for(let k = puzzle[i][j]+1;k<10;k++){
+//     let row = [k],col = [k],sudounit = [k],flag = true;
+//     for(let h=0;h<9;h++){
+//       //横向比较
+//       if(row.includes(puzzle[i][h])){
+//         flag = false;
+//         break;
+//       }else if(puzzle[i][h]!=0){
+//         row.push(puzzle[i][h]);
+//       }
+//       //纵向比较
+//       if(col.includes(puzzle[h][j])){
+//         flag = false;
+//         break;
+//       }else if(puzzle[h][j]!=0){
+//         col.push(puzzle[h][j]);
+//       }
+//       //小九宫格内的数字比较
+//       let key = puzzle[Math.floor(i/3)*3+Math.floor(h/3)][Math.floor(j/3)*3+h%3]
+//       if(sudounit.includes(key)){
+//         flag = false;
+//         break;
+//       }else if(key!=0){
+//         sudounit.push(key);
+//       }
+//     }
+//     if(flag&&lastnum!=k){
+//       mykey = k;
+//       break;
+//     } 
+//   }
+//   return mykey;
+// }
+
+
+function rank(){
+
 }
-function sudokuNum(puzzle,i,j,lastnum){
-  let mykey = 0;
-  for(let k = puzzle[i][j]+1;k<10;k++){
-    let row = [k],col = [k],sudounit = [k],flag = true;
-    for(let h=0;h<9;h++){
-      //横向比较
-      if(row.includes(puzzle[i][h])){
-        flag = false;
-        break;
-      }else if(puzzle[i][h]!=0){
-        row.push(puzzle[i][h]);
-      }
-      //纵向比较
-      if(col.includes(puzzle[h][j])){
-        flag = false;
-        break;
-      }else if(puzzle[h][j]!=0){
-        col.push(puzzle[h][j]);
-      }
-      //小九宫格内的数字比较
-      let key = puzzle[Math.floor(i/3)*3+Math.floor(h/3)][Math.floor(j/3)*3+h%3]
-      if(sudounit.includes(key)){
-        flag = false;
-        break;
-      }else if(key!=0){
-        sudounit.push(key);
-      }
+//阶乘
+function factorial(start,end){
+    var result = 1;
+    if(start == 0||start == 1){
+      return result;
     }
-    if(flag&&lastnum!=k){
-      mykey = k;
-      break;
-    } 
-  }
-  return mykey;
+    end = end == "undefined" ? 0 : end;
+    while(start>0&&start>=end){
+        result *= start;
+        --start;
+    }
+    return result;
 }
+console.log(factorial(10,3))
