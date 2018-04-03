@@ -383,9 +383,25 @@ function desimo(n){
 //   return mykey;
 // }
 
-
-function rank(){
-
+//给一个字符串，获取其再所有升序排序中的位置
+function listPosition(word){
+  var wordLen = word.length,//输入字符长度
+      result = 1;//结果
+  for(let i = 0;i<wordLen-1;i++){
+    let onlyChar = canuseChar(word.substr(i)),
+        index = onlyChar.indexOf(word[i]);//去重数组
+    if(index>0){
+      let restChar = charNum(word.substr(i)),
+          onlyRestChar = onlyChar.slice(0, index),
+          nowHead = word[i];
+      for(let j = 0,len = onlyRestChar.length;j<len;j++){
+        --restChar[onlyRestChar[j]];
+        j == 0 ? "":++restChar[onlyRestChar[j-1]];
+        result+=restComNum(restChar,wordLen-i-1);
+      }
+    } 
+  }
+  return result;
 }
 //阶乘
 function factorial(start,end){
@@ -393,11 +409,40 @@ function factorial(start,end){
     if(start == 0||start == 1){
       return result;
     }
-    end = end == "undefined" ? 0 : end;
+    end = end == undefined ? 0 : end;
     while(start>0&&start>=end){
         result *= start;
         --start;
     }
     return result;
 }
-console.log(factorial(10,3))
+//返回去重后的数组，并按升序排列
+function canuseChar(str){
+  var result = new Set(str.split(""));
+  return ([...result]).sort();
+}
+//组合
+//等同于公式C(m,n)
+function combination(start,end){
+  return (factorial(start,start-end+1)/factorial(end))
+}
+//字母数量
+function charNum(word){
+  var result = {};
+  for(let i = 0,len = word.length;i<len;i++){
+    result[word[i]] = result[word[i]] == undefined ? 1 : ++result[word[i]];
+  }
+  return result;
+}
+//剩余组合数量
+//obj:字母数量，用于组合
+//len:字符串长度
+function restComNum(obj,len){
+  var result = 1;
+  for(var k in obj){
+    result *= combination(len,obj[k]);
+    len = len - obj[k];
+  }
+  return result;
+}
+console.log(listPosition("QUESTION"))
