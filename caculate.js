@@ -445,4 +445,15 @@ function restComNum(obj,len){
   }
   return result;
 }
-console.log(listPosition("QUESTION"))
+
+//获取某个年份为何年
+function whichYear(num){
+  var yearSpan = num < 1984 ? 1984 - num : num - 1984,
+      rest = yearSpan%60,
+      restTian = rest%10,
+      restDi = rest%12,
+      tiangan = "甲乙丙丁戊己庚辛壬癸",
+      dizhi = "子丑寅卯辰巳午未申酉戌亥";
+  return "今年是"+tiangan[restTian]+dizhi[restDi]+"年";
+}
+console.log(whichYear("112"))
