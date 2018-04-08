@@ -456,4 +456,3 @@ function whichYear(num){
       dizhi = "子丑寅卯辰巳午未申酉戌亥";
   return "今年是"+tiangan[restTian]+dizhi[restDi]+"年";
 }
-console.log(whichYear("112"))
