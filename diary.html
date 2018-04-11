@@ -99,5 +99,19 @@
         console.log(document.defaultView.getComputedStyle(target));
         //target.style.transform = ''
     }
+    var a = 1;
+    function f(b){
+        return function g(c){
+            return function h(d){
+                return a+b+c+d;
+            }
+        }
+    }
+    var add2=f(2),
+        add3 = add2(2),
+        add4=add2(3),
+        r1=add3(10),
+        r2=add4(10);
+    console.log(r1,r2);
 </script>
 </html>
