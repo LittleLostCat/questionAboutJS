@@ -456,7 +456,7 @@ function whichYear(num){
       dizhi = "子丑寅卯辰巳午未申酉戌亥";
   return "今年是"+tiangan[restTian]+dizhi[restDi]+"年";
 }
-//by 阮一峰
+//快速排序by 阮一峰
 var quickSort = function(arr) {
 
 　　if (arr.length <= 1) { return arr; }
@@ -486,4 +486,19 @@ var quickSort = function(arr) {
 　　return quickSort(left).concat([pivot], quickSort(right));
 
 };
+
+function orderNumbers(digit){
+  var total = Math.pow(10,digit),
+      result = 0;
+  for(var i = 0;i<total;i++){
+    var strArr = String(i).split(""),
+        increasingArr = strArr.sort(),
+        decreasingArr = increasingArr.reverse();
+    if(strArr == increasingArr.join("")||strArr ==decreasingArr.join("")){
+      result++
+    }
+  }
+  return result;
+}
+//orderNumbers(1)
 
