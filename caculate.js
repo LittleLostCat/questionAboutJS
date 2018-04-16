@@ -112,7 +112,6 @@ function mix(s1, s2) {
       ss2 = [...new Set(s2.replace(/[^a-z]/g,""))],
       common = [...new Set([...ss1,...ss2])],
       result = [];
-  console.log(ss1,ss2)
   common.forEach((v,i)=>{
     let reg = new RegExp(v,"g"),
         lens1 = s1.match(reg)==null?0:s1.match(reg).length,
@@ -487,18 +486,20 @@ var quickSort = function(arr) {
 
 };
 
+//超时
 function orderNumbers(digit){
   var total = Math.pow(10,digit),
       result = 0;
-  for(var i = 0;i<total;i++){
+  for(var i = 1;i<=total;i++){
     var strArr = String(i).split(""),
-        increasingArr = strArr.sort(),
-        decreasingArr = increasingArr.reverse();
-    if(strArr == increasingArr.join("")||strArr ==decreasingArr.join("")){
+        orderArr = strArr.sort(),
+        increasingStr = orderArr.join(""),
+        decreasingStr = orderArr.reverse().join("");
+    if(i == increasingStr||i == decreasingStr){
       result++
     }
   }
   return result;
 }
-//orderNumbers(1)
+console.log(orderNumbers(6))
 
