@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+var recipe = {flour: 200, eggs: 1, sugar: 100};
+function getMissingIngredients(recipe, added) {
+    var result = {},
+        temp = {flour: added["flour"]||0, eggs:added["eggs"]||0, sugar: added["sugar"]||0},
+        maxNum = Math.max(temp["flour"]/recipe["flour"],temp["eggs"]/recipe["eggs"],temp["sugar"]/recipe["sugar"]),
+        max = maxNum==0?1:Math.ceil(maxNum);
+    for(var k in temp){
+        if(added[k]===undefined){
+            result[k]=recipe[k]*max;
+        }else{
+            var single = max*recipe[k]-added[k];
+            if(single>0){
+                result[k]=single;
+            };
+        }
+    }
+    return result;
+}
+console.log(getMissingIngredients(recipe,{flour: 50, eggs: 1}))
+</script>
+</html>
