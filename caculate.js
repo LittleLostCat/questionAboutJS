@@ -22,6 +22,7 @@ function mianshi(){
         i = i === 3 ? 0 : ++i;
         return result;
     }
+    //用于数据的双向绑定
     Object.defineProperty(a,"name",{
         get:function(){
             let result = b[i];
