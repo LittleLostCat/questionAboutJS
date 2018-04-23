@@ -22,6 +22,7 @@ function mianshi(){
         i = i === 3 ? 0 : ++i;
         return result;
     }
+    //用于数据的双向绑定
     Object.defineProperty(a,"name",{
         get:function(){
             let result = b[i];
@@ -500,5 +501,23 @@ function orderNumbers(digit){
   }
   return result;
 }
-console.log(orderNumbers(6))
+
+var recipe = {flour: 200, eggs: 1, sugar: 100};
+function getMissingIngredients(recipe, added) {
+    var result = {},
+        temp = {flour: added["flour"]||0, eggs:added["eggs"]||0, sugar: added["sugar"]||0},
+        maxNum = Math.max(temp["flour"]/recipe["flour"],temp["eggs"]/recipe["eggs"],temp["sugar"]/recipe["sugar"]),
+        max = maxNum==0?1:Math.ceil(maxNum);
+    for(var k in temp){
+        if(added[k]===undefined){
+            result[k]=recipe[k]*max;
+        }else{
+            var single = max*recipe[k]-added[k];
+            if(single>0){
+                result[k]=single;
+            };
+        }
+    }
+    return result;
+}
 
