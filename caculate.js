@@ -521,3 +521,25 @@ function getMissingIngredients(recipe, added) {
     return result;
 }
 
+Number.prototype.twos = function(n) {
+  var _this = this,
+      padLeft = "",
+      posiveBinary = "",//正整数的二进制
+      result = "";
+  if(n<=1){
+    return this;
+  }else{
+    padLeft = "0".repeat(n);
+  }
+  if(_this>=0){
+    posiveBinary = (padLeft+_this.toString(2)).substr(-n);
+    return posiveBinary;
+  }else{
+    posiveBinary = (padLeft+(-_this).toString(2)).substr(-n);
+  }
+  result = posiveBinary.replace(/./g,function(...arg){if(arg[0]=="1"){return "0"}else{return "1"}}).replace(/(.*)01*$/,"$11");
+  result = result + "0".repeat(n-result.length);
+  return result;
+}
+
+console.log((-2).twos(3));
