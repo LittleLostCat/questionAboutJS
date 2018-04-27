@@ -24,12 +24,6 @@ onloadstart:事件回调方法在ajax请求发送之前触发, 触发时机在 r
 onprogress事件回调方法在 readyState==3 状态时开始触发, 默认传入 ProgressEvent 对象, 可通过 e.loaded/e.total 来计算加载资源的进度, 该方法用于获取资源的下载进度.
 onload:事件回调方法在ajax请求成功后触发, 触发时机在 readyState==4 状态之后.
 **/
-
-
-
-
-
-
 //通过createXHR()函数创建一个XHR对象：
 
 function createXHR() {
