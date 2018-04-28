@@ -47,7 +47,7 @@ function order(words){
   }
   return result.join(" ")
 }
-//利用正则，个人觉得很妙
+//利用正则排列，个人觉得很妙
 function order(words){
   return words.split(' ').sort(function(a, b){
       return a.match(/\d/) - b.match(/\d/);
