@@ -32,6 +32,7 @@
     <div class='target'></div>
     <input type="button" onclick = 'transformChange()' value = '点我1'> -->
 </body>
+<script type="text/javascript" src="./lib/jquery@1.8.3.min.js"></script>
 <script src='./caculate.js'></script>
 <script>
 	//将{"a":["1","2"],"b":["一","二"]}转为[{"a":"1","b":"一"}，{"a":"2","b":"二"}]
@@ -118,5 +119,12 @@
         add4=add2(3),
         r1=add3(10),
         r2=add4(10);
+    var keydownArr = {};
+    $(document).on("keydown",function(e){
+        keydownArr[e.keyCode] = e.keyCode;
+    })
+    $(document).on("keyup",function(e){
+        delete keydownArr[e.keyCode];
+    })
 </script>
 </html>
