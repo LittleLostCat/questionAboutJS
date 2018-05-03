@@ -542,4 +542,20 @@ Number.prototype.twos = function(n) {
   return result;
 }
 
-console.log((-2).twos(3));
+var aa = [1,'A',2,3,1,2,3,5,3,5,5].reduce(function(now,next){
+  now[next] = now[next]==undefined?1:++now[next];
+  return now;
+},{});
+var bb = [];
+Object.keys(aa).sort(function(a,b){
+  if(aa[b]>aa[a]){
+    return true;
+  }else{
+    return a-b;
+  }
+}).forEach(function(v,i){
+  bb = [...bb,...v.repeat(aa[v])]
+})
+
+
+
