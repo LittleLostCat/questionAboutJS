@@ -4,6 +4,20 @@
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
+<style>
+.upload-file .uf-button form {
+        position: relative;
+}
+
+.upload-file .uf-button form input {
+    position: absolute;
+    top: 0;
+    opacity: 0;
+    filter: alpha(opacity=0);
+    height: 100%;
+    width: 100%;
+}
+</style>
 <html>    
 <body>      
   <form action="" method="post" target="nm_iframe">    
@@ -12,7 +26,46 @@
   </form> 
   <iframe id="id_iframe" name="nm_iframe" style="display:none;"></iframe>    
       
+  <div class="upload-file">
+    <div class="uf-button">
+        <form id="uf-form" method="post" 
+               action="/uploadAnnex" 
+               target="uf-frame"  
+               encoding="multipart/form-data" 
+               enctype="multipart/form-data">
+               <button id="uf-btn-upload" class="btn btn-default">
+                       <span class="glyphicon glyphicon-plus"></span>
+                         添加
+               </button>
+               <input id="uf-input-upload" type="file" name="file"/>
+           </form>
+           <iframe id="uf-frame" name="uf-frame" style="visibility:hidden;height: 0;border: 0;"></iframe>
+    </div>
+ </div>
+
+ <script type="text/javascript" src="./lib/jquery@2.2.4.min.js"></script> 
 <script>
+$('#uf-input-upload').on('change', function (e) {
+    if (e.target.value.length>0) {
+        $('#uf-form').submit();
+        console.log("上传文件");
+    }
+});
+//监听frame的load事件判断是否有返回信息
+$('#uf-frame').on('load', function () {
+    var response = $("#uf-frame").contents().find("body").html();
+    console.log(response);
+    if (response.length > 0) {
+        try {
+            response = JSON.parse(response);
+            console.log("返回的信息:"+response );
+        } catch(e){
+
+        }
+    }else {
+        message.add("上传文件失败", "error");
+    }
+});
 </script>
 </body>
 </html>
