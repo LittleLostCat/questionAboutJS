@@ -502,6 +502,7 @@ function orderNumbers(digit){
   return result;
 }
 
+//根据最大值的整数输出
 var recipe = {flour: 200, eggs: 1, sugar: 100};
 function getMissingIngredients(recipe, added) {
     var result = {},
