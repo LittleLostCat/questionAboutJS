@@ -13,7 +13,6 @@
 function boids() {
     var canvas = document.createElement('CANVAS'),
       context = canvas.getContext('2d'),
-      mouse = {down: false},
       boidCount = 40,
       boidMinSpeed = 2,
       boidMaxSpeed = 4,
@@ -32,8 +31,6 @@ function boids() {
       debug = false,
       backgroundAlpha = 0.5,
       allBoids = [];
-  
-  
     function white(alpha) {
       return 'RGBA(255, 255, 255, ' + alpha + ')';
     }
@@ -87,8 +84,6 @@ function boids() {
           context.arc(this.x, this.y, 10 + this.size, 0, 2 * Math.PI);
           context.stroke();
         } else {
-  
-  
           context.save();
           context.strokeStyle = 'RGBA(0, 0, 0, 0.3)';
           context.lineWidth = 30;
@@ -100,7 +95,6 @@ function boids() {
           for (i = this.positionHistory.length - 1; i >= 0; i -- ) {
             x -= this.positionHistory[i][0];
             y -= this.positionHistory[i][1];
-  
             context.lineTo(x, y);
           }
           context.stroke();
@@ -359,7 +353,10 @@ function boids() {
     canvas.onmousemove = canvas.ontouchmove = handleMove;
   
     function renderLoop() {
-      requestAnimationFrame(renderLoop);
+      
+      /********代码的核心之魂，用于蠕虫的移动*******/
+      //requestAnimationFrame(renderLoop);
+      //setTimeout(renderLoop,1000);
       context.globalAlpha = 1;
       if (debug) {
         context.fillStyle = '#043F8C';
@@ -378,6 +375,7 @@ function boids() {
         context.arc(mouse.x, mouse.y, 50, 0, 2 * Math.PI);
         context.stroke();
       }
+      //console.log(allBoids);
       allBoids.forEach(function (boid) {
         boid.update();
       });
