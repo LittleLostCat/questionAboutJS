@@ -355,7 +355,7 @@ function boids() {
     function renderLoop() {
       
       /********代码的核心之魂，用于蠕虫的移动*******/
-      //requestAnimationFrame(renderLoop);
+      requestAnimationFrame(renderLoop);
       //setTimeout(renderLoop,1000);
       context.globalAlpha = 1;
       if (debug) {
@@ -393,7 +393,6 @@ function boids() {
   
     renderLoop();
   }
-  
   window.onload = boids;
 </script>
 </html>
