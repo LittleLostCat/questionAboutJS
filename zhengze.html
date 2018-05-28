@@ -14,7 +14,6 @@
 		var input = document.getElementById("data").value+"";
  		var bo = new RegExp("((\\.0+)|(0+))$");//正则对象建立字符串形式需要进行对\的转译
  		var co = new RegExp(/((\.0+)|(0+))$/);
- 		//var co = new RegExp(/(\.0+)/);
  		co.test(input)
  		console.log(RegExp.$1)
  		var dot = input.replace(co,"")

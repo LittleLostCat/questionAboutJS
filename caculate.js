@@ -1,6 +1,6 @@
 function solution(number){
     let triple = 0,
-	  	penta = 0,
+	  	  penta = 0,
 	 	triples = Math.ceil(number/3),
 		pentas = Math.ceil(number/5),
 		multiple = Math.ceil(number/15),
