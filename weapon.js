@@ -65,5 +65,9 @@ function isArray(o){
     return Object.prototype.toString.call(o)=='[object Array]';
 }
 
-
+//url传值解析
+var loanData = {};
+window.location.search.replace(/[?|&]([^=]+)=([^&]+)/g,function(str,$1,$2){
+    loanData[$1]=decodeURIComponent($2);
+});
 
