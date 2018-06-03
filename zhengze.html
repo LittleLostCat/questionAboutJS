@@ -19,6 +19,7 @@
  		var dot = input.replace(co,"")
 		document.getElementById("data").value = dot;
 	}
+	//千分位正则表达式
 	function fitter(data){
 		var data = "" + data;
 			data = data.replace(/(?=(?!\b)(\d{3})+$)/g, ',')
