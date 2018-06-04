@@ -485,7 +485,35 @@ var quickSort = function(arr) {
 　　return quickSort(left).concat([pivot], quickSort(right));
 
 };
-
+//另外一个版本
+function quickSort(array){
+  function sort(prev, numsize){
+    var nonius = prev;//头
+    var j = numsize -1;//尾
+    var flag = array[prev];//标杆
+    if ((numsize - prev) > 1) {
+      while(nonius < j){
+        for(; nonius < j; j--){
+            if (array[j] < flag) {
+              array[nonius++] = array[j];　//a[i] = a[j]; i += 1;
+              break;
+          };
+        }
+        for( ; nonius < j; nonius++){
+          if (array[nonius] > flag){
+            array[j--] = array[nonius];
+            break;
+          }
+        }
+      }
+      array[nonius] = flag;
+      sort(0, nonius);
+      sort(nonius + 1, numsize);
+    }
+  }
+  sort(0, array.length);
+  return array;
+}
 //超时
 function orderNumbers(digit){
   var total = Math.pow(10,digit),
@@ -583,13 +611,13 @@ function add() {
 }
 
 // 输出结果，可自由组合的参数
-console.log(add(1, 2, 3, 4, 5));  // 15
-console.log(add(1, 2, 3, 4)(5));  // 15
-console.log(add(1)(2)(3)(4)(5));  // 15
+// console.log(add(1, 2, 3, 4, 5));  // 15
+// console.log(add(1, 2, 3, 4)(5));  // 15
+// console.log(add(1)(2)(3)(4)(5));  // 15
 
 
 //希尔排序
-var arr = [49, 38, 65, 97, 76, 13, 27, 49, 55, 04,1];
+var arr = [49, 38, 65, 97, 76, 13, 27, 49, 55, 04, 1];
 var len = arr.length;
 for (var fraction = Math.floor(len / 2); fraction > 0; fraction = Math.floor(fraction / 2)) {
     for (var i = fraction; i < len; i++) {
@@ -597,13 +625,27 @@ for (var fraction = Math.floor(len / 2); fraction > 0; fraction = Math.floor(fra
             var temp = arr[j];
             arr[j] = arr[fraction + j];
             arr[fraction + j] = temp;
+            console.log(arr);
         }
     }
 }
 console.log(arr);
 
 
-
-
+function produce(){
+  var code = "abcdefghijklmnopqrstuvwxyz0123456789";//长度36
+  var {floor,random} = Math;
+  var result = [];
+  result.push(code[floor(random()*26)]);
+  result.push(code[floor(random()*26)].toUpperCase());
+  result.push(code[floor(random()*10+26)]);
+  for(var i = 0;i<3;i++){
+    result.push(code[floor(random()*36)]);
+  }
+  result = result.sort(function(a,b){
+    return random()<0.5?-1:1;
+  })
+  return result.join("");
+}
 
 
