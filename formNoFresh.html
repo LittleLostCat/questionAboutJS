@@ -23,6 +23,8 @@
   <form action="" method="post" target="nm_iframe">    
       <input type="text" id="id_input_text" name="nm_input_text" />    
       <input type="submit" id="id_submit" name="nm_submit" value="提交" />    
+      <!-- 图片初次加载路径错误 -->
+      <img id="IdPositivePic" src="${corporateIdentity}" onerror="this.onerror=null;this.src='/Contents/financing/frontForms/index_apply/images/upload-default.png';$('.enlarge').eq(2).addClass('bottom_left');$(this).addClass('noChange');" alt="">
   </form> 
   <iframe id="id_iframe" name="nm_iframe" style="display:none;"></iframe>    
       
@@ -85,6 +87,7 @@ function getFileUrl(sourceId) {
 function onUploadImgChange(obj,targetId) {
     var imgSrc = getFileUrl(obj.id); 
     var imgShow = document.getElementById(targetId);
+	$(imgShow).removeAttr("onerror");
     imgShow.style.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled='true',sizingMethod='scale',src=\"" + imgSrc + "\")"; 	  
     imgShow.src = "";
 }
