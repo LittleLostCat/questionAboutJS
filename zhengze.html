@@ -65,5 +65,58 @@
 	function isValidIP(str) {
 	 return /^(([1-9]?\d|1\d\d|2[0-4]\d|25[0-5])(\.(?!$)|$)){4}$/.test(str);
 	}
+
+// s 可能为空，且只包含从 a-z 的小写字母。
+// p 可能为空，且只包含从 a-z 的小写字母，以及字符 . 和 *。
+//模拟正则匹配
+var isMatch = function(s, p) {
+    var index = 0,
+		indexP = 0,
+        result = true;
+	if(s==p){
+		return true;
+	}
+
+    for(var len=p.length;indexP<len;){
+		//debugger
+        if(p[indexP]==s[index]||p[indexP]=='.'){
+			++index;
+			indexP+=p[indexP+1]=="*"?0:1;
+		}else{
+			if(p[indexP+1]=="*"){
+				indexP+=2;
+			}else{
+				return false;
+			}
+		}
+		if(s[index]==undefined){//匹配完s中所有
+			break;
+		}
+    }
+	if(result&&p[indexP+2]!=undefined||(p[indexP+1]&&p[indexP+1]!='*')||s[index]!=undefined){
+		result=false;
+	}
+    return result;
+};
+console.log(isMatch("mississippi","mis*is*ip*."))
+console.log(isMatch("ab",".*c"))
+console.log(isMatch("aa","a*"))
+console.log(isMatch("aa","a"))
+console.log(isMatch("aaa","aaaa"))
+/* 
+"mississippi","mis*is*ip*."
+ */
+/*
+"ab",".*c"
+*/
+/*
+"aa","a*"
+*/
+/*
+"aa","a"
+*/
+/*
+"aaa","aaaa"
+*/
 </script>
 </html>
