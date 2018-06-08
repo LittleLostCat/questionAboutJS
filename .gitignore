@@ -3,3 +3,8 @@ tips.txt
 .vimLesson.txt.un~
 falls.html
 copy.html
+*.pdf
+readfile.js
+*.TTF
+message.*
+lib/*
