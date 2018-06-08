@@ -8,3 +8,5 @@ readfile.js
 *.TTF
 message.*
 lib/*
+vfs_fonts.js
+msyh.js

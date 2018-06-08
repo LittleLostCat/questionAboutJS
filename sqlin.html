@@ -12,6 +12,7 @@
 		<input type="button" value="replace" onclick="freeOutput()"><br/><br/>
 		<input type="button" value="in转换" onclick="inOutput()"><br/><br/>
 		<input type="button" value="like转换" onclick="likeOutput()"><br/><br/>
+		<input type="button" value="自定义" onclick="changelike()"><br/><br/>
 	</div>
 	<textarea name="" id="outStr" cols="40" rows="40"></textarea>
 </body>
@@ -49,6 +50,11 @@
 		let regExp = new RegExp(freeStr.value,"g");
 		let likeP = likeParam.value;
 		var str =  likeP.replace("toreplace",inStr.value.replace(regExp,"','").replace(/\s/g,""));
+		outStr.value = str;
+	}
+	function changelike()
+	{
+		var str = inStr.value.replace(/\n/g,"'},\n{text:'");
 		outStr.value = str;
 	}
 </script>
