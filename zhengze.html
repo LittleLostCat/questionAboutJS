@@ -65,6 +65,7 @@
 	function isValidIP(str) {
 	 return /^(([1-9]?\d|1\d\d|2[0-4]\d|25[0-5])(\.(?!$)|$)){4}$/.test(str);
 	}
+	//url 数据解析
 	function params(){
 		var a = "";
 		"loanAmount=200.0&reimbursement=3&remeans=18&cardId=660&cardNo=5763+***+***+***+7222&cardNoFull=5763246264982947222&bankName=%E4%B8%AD%E5%9B%BD%E5%86%9C%E4%B8%9A%E9%93%B6%E8%A1%8C&accountBankId=17&spouseName=&spouseIdCard=&spouseMobile=&userId=3&creditId=DA722E885A4546F489FEECB26E990F7A&merryStatus=10".replace(/(.*?)=([^&]*|\b)/g,function(str,$1,$2){
