@@ -24,7 +24,7 @@
       <input type="text" id="id_input_text" name="nm_input_text" />    
       <input type="submit" id="id_submit" name="nm_submit" value="提交" />    
       <!-- 图片初次加载路径错误 -->
-      <img id="IdPositivePic" src="${corporateIdentity}" onerror="this.onerror=null;this.src='/Contents/financing/frontForms/index_apply/images/upload-default.png';$('.enlarge').eq(2).addClass('bottom_left');$(this).addClass('noChange');" alt="">
+      <!-- JSP <img id="IdPositivePic" src="${corporateIdentity}" onerror="this.onerror=null;this.src='/Contents/financing/frontForms/index_apply/images/upload-default.png';$('.enlarge').eq(2).addClass('bottom_left');$(this).addClass('noChange');" alt=""> -->
   </form> 
   <iframe id="id_iframe" name="nm_iframe" style="display:none;"></iframe>    
       
@@ -43,8 +43,8 @@
            </form>
            <iframe id="uf-frame" name="uf-frame" style="visibility:hidden;height: 0;border: 0;"></iframe>
     </div>
- </div>
-
+</div>
+<iframe src="https://c.y.qq.com/musichall/fcgi-bin/fcg_yqqhomepagerecommend.fcg" frameborder="0" id="testFrame"></iframe>
  <script type="text/javascript" src="./lib/jquery@2.2.4.min.js"></script> 
 <script>
 $('#uf-input-upload').on('change', function (e) {
@@ -71,7 +71,6 @@ $('#uf-frame').on('load', function () {
 //回调数据通过setTimeout来进行
 //回调数据会编译在iframe中
 
-
 //IE8图片预览
 function getFileUrl(sourceId) { 
 	var url; 
@@ -91,6 +90,7 @@ function onUploadImgChange(obj,targetId) {
     imgShow.style.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled='true',sizingMethod='scale',src=\"" + imgSrc + "\")"; 	  
     imgShow.src = "";
 }
+
 </script>
 </body>
 </html>
