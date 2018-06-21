@@ -71,7 +71,6 @@ function likes (names) {
   });
 }
 
-
 //索引从1开始，计算一个正整数每个位上数字的索引次方与本身相同的
 function add(i){
 	let results = [];
