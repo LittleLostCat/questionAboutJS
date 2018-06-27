@@ -73,6 +73,14 @@
 			return $1+":"+$2;
 		})
 	}
+	function javaData(){
+		var a = "[{emailInfo=bshaifd|43214321@qq.com}, {emailInfo=sdafdsaf|13212@qq.com}, {emailInfo=bian|1321@qq.com}, {emailInfo=VAAADA|143214@qq.COM}, {emailInfo=BIAN1|43214321@qq.COM}, {emailInfo=liujuan|rrrr@qq.com}, {emailInfo=bian|111111@qq.com}, {emailInfo=13214321a|111111@qq.com}, {emailInfo=bian|1321@qq.com}, {emailInfo=bianya|111111@qq.com}, {emailInfo= iIbiza比i|wwww}]";
+		var b = [];
+		a.replace(/[^=]*=([^}])/g,function(str,$1){
+			b.push($1)
+		})
+		return b;
+	}
 // s 可能为空，且只包含从 a-z 的小写字母。
 // p 可能为空，且只包含从 a-z 的小写字母，以及字符 . 和 *。
 //模拟正则匹配
