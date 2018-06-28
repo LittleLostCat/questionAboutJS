@@ -81,6 +81,9 @@
 		})
 		return b;
 	}
+	function mailCheck(mail){
+		return /^(\w)+(\.\w+)*@(\w)+((\.\w+)+)$/.test(mail)
+	}
 // s 可能为空，且只包含从 a-z 的小写字母。
 // p 可能为空，且只包含从 a-z 的小写字母，以及字符 . 和 *。
 //模拟正则匹配
