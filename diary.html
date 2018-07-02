@@ -25,6 +25,11 @@
     <a href="" id="tsta">
         <input type="checkbox"/>a标签里放了checkbox
     </a>
+    <p>1</p>
+    <p>2</p>
+    <p>3</p>
+    <p>4</p>
+    <p>5</p>
 	<!-- webpack不是内部命令是由于环境变量问题引起；
 	0105项目代码问题，由于测试未删除测试代码，导致发布后部分功能不能实现；
     0109保存或者提交时，将保存或提交按钮失效，以避免重复操作；
@@ -41,6 +46,9 @@
 <script type="text/javascript" src="./lib/jquery@1.8.3.min.js"></script>
 <script src='./caculate.js'></script>
 <script>
+	for(var i = 0;i<3;i++){
+        console.log($("p").eq(i).text());
+    }
     $("#tsta").on("click",function(e){
         e.stopPropagation();
         e.preventDefault();
