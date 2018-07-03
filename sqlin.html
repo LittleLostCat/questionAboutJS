@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Document</title>
+	<title>各类格式变更</title>
 </head>
 <body>
 	<textarea name="" id="inStr" cols="40" rows="40"></textarea>
@@ -13,6 +13,7 @@
 		<input type="button" value="in转换" onclick="inOutput()"><br/><br/>
 		<input type="button" value="like转换" onclick="likeOutput()"><br/><br/>
 		<input type="button" value="自定义" onclick="changelike()"><br/><br/>
+		<input type="button" value="后台java格式转换" onclick="turnToJSON()"><br/><br/>
 	</div>
 	<textarea name="" id="outStr" cols="40" rows="40"></textarea>
 </body>
@@ -56,6 +57,18 @@
 	{
 		var str = inStr.value.replace(/\n/g,"'},\n{text:'");
 		outStr.value = str;
+	}
+	function turnToJSON(str){
+		var str = inStr.value;
+		var result = str.replace(/([\w\d]*)=([^},\]]*)*(})*/gi,function(str,$1,$2,$3){
+			var string = "";
+			console.log($1,$2,$3)
+			if($3=="}"){
+				string = "\n}"
+			}
+			return '\n"'+$1+'":"'+$2+'"'+string;
+		})
+		outStr.value = result;
 	}
 </script>
 </html>

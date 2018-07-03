@@ -142,5 +142,11 @@ console.log(isMatch("aaa","a*a"),true)
 /*
 "aaa","aaaa"
 */
+//将后台返回的=格式的字符串转为json字符
+function turnToJSON(str){
+	str.replace(/([\w\d]*)=([^},\]]*)/gi,function(str,$1,$2){
+		return $1+":"+$2;
+	})
+}
 </script>
 </html>
