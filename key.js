@@ -31,7 +31,6 @@ function fireKeyEvent(el, evtType, keyCode){
 }  
 fireKeyEvent(input元素, 'keydown', 13); 
 
-
 //async
 async function timeout(ms) {
   await new Promise((resolve) => {
