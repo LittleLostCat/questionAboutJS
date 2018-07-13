@@ -71,3 +71,49 @@ window.location.search.replace(/[?|&]([^=]+)=([^&]+)/g,function(str,$1,$2){
     loanData[$1]=decodeURIComponent($2);
 });
 
+//获取日期对象
+function dateObj(date){
+    this.date = new Date(date);
+    this.getFullDate = function(){
+        return this.date;
+    }
+    this.getYear = function(){
+        return ""+this.date.getFullYear();
+    }
+    this.getMonth = function(){
+        return ""+(this.date.getMonth()+1);
+    }
+    this.getDate = function(){
+        return ""+this.date.getDate();
+    }
+    this.getDay = function(){
+        return ""+this.date.getDay();
+    }
+    this.getHour = function(){
+        return ""+this.date.getHours();
+    }
+    this.getMinute = function(){
+        return ""+this.date.getMinutes();
+    }
+    this.getSecond = function(){
+        return ""+this.date.getSeconds();
+    }
+    var format = {
+        "(Y+)":this.getYear(),
+        "(M+)":this.getMonth(),
+        "(D+)":this.getDate(),
+        "(h+)":this.getHour(),
+        "(m+)":this.getMinute(),
+        "(s+)":this.getSecond()
+    };
+    this.formatf = function(line){
+        for(let key in format){
+            if(new RegExp(key).test(line)){
+                line = line.replace(RegExp.$1,RegExp.$1.length==1?format[key]:("00"+format[key]).substr(-RegExp.$1.length));
+            }
+        }
+        return line;
+    }
+}
+var aa = new dateObj("2018-12-19 11:12:13")
+console.log(aa.formatf("YY-M-D"))

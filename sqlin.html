@@ -62,7 +62,6 @@
 		var str = inStr.value;
 		var result = str.replace(/([\w\d]*)=([^},\]]*)*(})*/gi,function(str,$1,$2,$3){
 			var string = "";
-			console.log($1,$2,$3)
 			if($3=="}"){
 				string = "\n}"
 			}
@@ -71,4 +70,5 @@
 		outStr.value = result;
 	}
 </script>
+<script type="text/javascript" src="./weapon.js"></script>
 </html>
