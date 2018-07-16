@@ -10,3 +10,5 @@ message.*
 lib/*
 vfs_fonts.js
 msyh.js
+node_modules
+output.txt
