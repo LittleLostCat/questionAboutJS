@@ -42,7 +42,6 @@ async function asyncPrint(value, ms) {
   console.log(value);
 }
 asyncPrint('hello world', 5000);
-
 // method - 支持 GET, POST, PUT, DELETE, HEAD
 // url - 请求的 URL
 // headers - 对应的 Headers 对象
