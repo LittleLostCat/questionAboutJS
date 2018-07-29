@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>vlookup简陋版</title>
+</head>
+<style>
+    *{
+        padding:0;
+        margin:0;
+    }
+    body{
+        padding-bottom:100px;
+        background:rgb(206, 206, 206);
+    }
+    .cb{
+        clear:both;
+    }
+    .fl{
+        float:left;
+    }
+    ul{
+        float:left;
+        border-right:1px solid rgb(169,169,169);
+        width:208px;
+    }
+    .fz24{
+        font-size:24px;
+    }
+    input[type='text']{
+        display: inline-block;
+        width:240px;
+        height:30px;
+        line-height: 30px;
+        text-indent: 6px;
+        border:1px solid rgb(169,169,169);
+        border-radius: 3px;
+    }
+    button{
+        display: inline-block;
+        padding:0 8px;
+        height:32px;
+        line-height: 32px;
+        font-size:16px;
+        text-align: center;
+        border-radius: 3px;
+        color:white;
+        outline:none;
+        cursor: pointer;
+    }
+    textarea{
+        width:240px;
+    }
+    li{
+        width:200px;
+        list-style-type:none;
+        padding: 0 2px 0 6px;
+        height: 18px;
+        line-height: 18px;
+        font-size: 14px;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        border-bottom: 1px dotted  rgb(169,169,169);
+    }
+    .content{
+        border-radius: 4px;
+        width:700px;
+        height:350px;
+        overflow:auto;
+        border:1px solid rgb(169,169,169);
+        background:rgb(236, 236, 236);
+    }
+    .titleDiv{
+        font-size: 18px;
+        cursor:pointer;
+    }
+    .bodyDiv{
+        float:left;
+    }
+    .fixed{
+        display:none;
+        position:fixed;
+        top:200px;
+        left:500px;
+        width:200px;
+        height:100px;
+        font-size:24px;
+        line-height: 100px;
+        text-align: center;
+    }
+    .delete{
+        background:red;
+    }
+    .spanTitle{
+        display: inline-block;
+        width:240px;
+        font-size: 24px;
+    }
+    .red{
+        border:1px solid red;
+        background: rgb(235, 80, 80);
+    }
+    .blue{
+        border:1px solid blue;
+        background: rgb(59, 59, 248);
+    }
+    .orange{
+        border:1px solid orange;
+        background: rgb(248, 187, 72);
+    }
+    .green{
+        border:1px solid green;
+        background: rgb(98, 233, 98);
+    }
+    .gray{
+        border:1px solid rgb(214, 3, 204);
+        background: rgb(197, 97, 172);
+    }
+</style>
+<body>
+    <div class="fixed">计算中。。。</div>
+    <div style="width:1320px;margin:0 auto;">
+        <div class="fl" style="width:780px;">
+            <p class="fz24">查询表</p>
+            <div class="content" id="fromTable" style="border: 1px solid blue;">
+                <div style="width:10000px"></div>
+            </div>
+            <p class="fz24">匹配表</p>
+            <div class="content" id="forTable" style="border: 1px solid orange">
+                <div style="width:10000px"></div>
+            </div>
+        </div>
+        <div class="fl" style="width:520px;">
+            <div style="width:100%;" >
+                <span class="spanTitle">请输入增加列：</span>
+                <span class="spanTitle">输出结果：</span>
+            </div>
+            <textarea id="inputData" cols='30' rows='40'></textarea>
+            <textarea id="result" cols='30' rows='40'></textarea>
+            <div style="width:100%;" >
+                <div style="height:40px;">
+                    <input type="text" id="patternCol" placeholder="输入列，以“,”分隔列，以“:”分隔表" />
+                    <input type="text" id="resutlCol" placeholder="输入对应的输入结果列"/>
+                </div>
+                <button class="red" onclick="deleteUl()">删除</button>
+                <button class="blue" onclick="addMainTable()">增加查询表字段</button>
+                <button class="orange" onclick="addForTable()">增加匹配表字段</button>
+                <button class="green" onclick="vlookup(true)">vlookup</button>
+                <button class="gray" onclick="vlookup(false)">模糊匹配</button>
+            </div>
+        </div>
+        <div class="cb"></div>
+    </div>
+</body>
+<script src="./lib/jquery@2.2.4.min.js"></script>
+<script type="text/javascript">
+    function addMainTable(){
+        var str = $("#inputData").val(),
+            retult = "",
+            fragment="",
+            index = $("#fromTable div ul").length+1;
+        if(str==""){
+            alert("请输入有效字符");
+            return false;
+        }
+        fragment += "<li class='titleDiv'>列"+index+"</li>"
+        str.replace(/(.*)\n/g,function(str,$1){
+            fragment += "<li class='titleBody' data-val='"+$.trim($1)+"' title='"+$.trim($1)+"'>"+$.trim($1)+"</li>";
+            return $1;
+        })
+        $("#fromTable div").append("<ul class='bodyDiv'>"+fragment+"</ul>");
+    }
+    function addForTable(){
+        var str = $("#inputData").val(),
+            retult = "",
+            fragment="",
+            index = $("#forTable div ul").length+1;
+        if(str==""){
+            alert("请输入有效字符");
+            return false;
+        }
+        
+        fragment += "<li class='titleDiv'>列"+index+"</li>"
+        str.replace(/(.*)\n/g,function(str,$1){
+            fragment += "<li class='titleBody' data-val='"+$.trim($1)+"' title='"+$.trim($1)+"'>"+$.trim($1)+"</li>";
+            return $1;
+        })
+        $("#forTable div").append("<ul class='bodyDiv'>"+fragment+"</ul>");
+    }
+    function vlookup(flag){
+        var arr = $("#patternCol").val().split(/[:：]/),
+            arrGroup = [arr[0].split(/[,，]/),arr[1].split(/[,，]/)],
+            retult = "",
+            formResult = $("#resutlCol").val(),
+            resultIndex = -1;
+        if(arrGroup[0].length != arrGroup[1].length){
+            alert("多条匹配数据不相等");
+            return false;
+        }
+        $("#forTable div ul").eq(arrGroup[1][0]-1).find("li.titleBody").each(function(i,v){
+            retult += "";
+            for(var j = 0,len = arrGroup[1].length;j<len;j++){
+                var text = $.trim($("#forTable div ul").eq(arrGroup[1][j]-1).find("li.titleBody").eq(i).html());
+                if(flag){
+                    resultIndex = $("#fromTable div ul").eq(arrGroup[0][j]-1).find("li[data-val='"+text+"']").index();
+                }else{
+                    resultIndex = $("#fromTable div ul").eq(arrGroup[0][j]-1).find("li[data-val*='"+text+"']").index();
+                }
+                if(resultIndex == -1){
+                    retult += ",";
+                    return true;
+                }
+            }
+            retult += $("#fromTable div ul").eq(formResult-1).find("li").eq(resultIndex).text()+",";
+        })
+        $("#result").val(retult.replace(/,/g,"\n"));
+    }
+    function deleteUl(){
+        $(".delete").remove();
+        $.each($(".bodyDiv"),function(i,v){
+            var index = $(v).index()+1;
+            $(v).find(".titleDiv").text("列"+index);
+        })
+    }
+    $(".content").on("click",".titleDiv",function(){
+        $(this).parent().toggleClass("delete");
+    })
+</script>
+</html>
