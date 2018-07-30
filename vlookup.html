@@ -182,7 +182,6 @@
             alert("请输入有效字符");
             return false;
         }
-        
         fragment += "<li class='titleDiv'>列"+index+"</li>"
         str.replace(/(.*)\n/g,function(str,$1){
             fragment += "<li class='titleBody' data-val='"+$.trim($1)+"' title='"+$.trim($1)+"'>"+$.trim($1)+"</li>";
