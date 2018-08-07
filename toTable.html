@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    .fl{
+        float: left;
+    }
+    table{
+        border:1px solid #444444;
+        cellspacing:0;
+        cellpadding:0;
+        border-collapse:collapse;
+        white-space: nowrap;
+    }
+    td{
+        border:1px dotted #444444;
+    }
+    .div2{
+        margin-left:60px;
+        width:600px;
+    }
+</style>
+<body>
+    <div class="fl">
+        <textarea id="from" cols='50' rows='40'></textarea>
+        <p>
+            <input type="number" id="columns" />
+            <input type="button" value="表单导出" onclick="tableToExcel('tablename', 'name')"/>
+        </p>
+    </div>
+    <div class="fl div2" >
+        <table id="resultTable"></table>
+    </div>
+	<a id="dlink"  style="display:none;"></a>
+</body>
+<script src="./lib/jquery@2.2.4.min.js"></script>
+<script type="text/javascript">
+    function change(){
+        var arr = $("#from").val(),
+            fragment = "",
+            cols = $("#columns").val();
+        arr = arr.replace(/\n|(\s+)/g,"|").split("|");
+        for(var i = 0,len=arr.length/cols;i<len;i++){
+            fragment += "<tr>";
+            for(var j = 0;j<cols;j++){
+                fragment += "<td>"
+                            + arr[i*cols+j]
+                            + "</td>"
+            }
+            fragment += "</tr>";
+        }
+        $("#resultTable").html(fragment);
+    }
+    
+	//导出excel
+	var tableToExcel = (function () {
+        var uri = 'data:application/vnd.ms-excel;base64,'
+        , template = '<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns="http://www.w3.org/TR/REC-html40"><head><meta charset="UTF-8"><!--[if gte mso 9]><xml><x:ExcelWorkbook><x:ExcelWorksheets><x:ExcelWorksheet><x:Name>{worksheet}</x:Name><x:WorksheetOptions><x:DisplayGridlines/></x:WorksheetOptions></x:ExcelWorksheet></x:ExcelWorksheets></x:ExcelWorkbook></xml><![endif]--></head><body><table>{table}</table></body></html>'
+            , base64 = function(s) { return window.btoa(unescape(encodeURIComponent(s))) }
+            , format = function(s, c) { return s.replace(/{(\w+)}/g, function(m, p) { return c[p]; }) }
+        return function (table, name) {
+            if($("#columns").val()==""){
+                alert("请输入列数");
+                return false;
+            }
+            change();
+            if (!table.nodeType) {
+                table = document.getElementById("resultTable");
+            }
+            var ctx = { worksheet: name || 'Worksheet', table: table.innerHTML }
+            document.getElementById("dlink").href = uri + base64(format(template, ctx));
+            document.getElementById("dlink").download = '表单整合.xls';
+            document.getElementById("dlink").click();
+        }
+    })()
+</script>
+</html>
