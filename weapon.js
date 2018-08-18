@@ -116,4 +116,3 @@ function dateObj(date){
     }
 }
 var aa = new dateObj("2018-12-19 11:12:13")
-console.log(aa.formatf("YY-M-D"))
